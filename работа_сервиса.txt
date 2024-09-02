@@ -1,0 +1,33 @@
+plain text
+@startuml
+
+actor "Платежная система" as ps
+actor "Клиент" as client
+participant "Веб-сервис" as api
+participant "База данных" as db
+participant "Сервис погоды" as ws
+participant "Сервис оплаты" as ps
+
+client -> api: Получить список свободных слотов
+api -> db: Выгрузить список свободных слотов
+db -> db
+api <- db: Список свободных слотов
+api <- client: Список свободных слотов
+
+client -> api: Получить список услуг
+api -> db: Выгрузить список услуг
+db -> db
+api <- db: Список услуг
+api <- client: Список услуг
+
+client -> api: Заказ
+api -> ws: Проверить погоду на дату записи
+ws -> ws
+api <- ws: Прогноз погоды
+api <- api: Формирует скидку
+client <- api: Цена заказа + скидка
+client -> api: Оплата
+api -> ps: Оплата
+api <-- ps: Оплата
+client <-- api: Подтверждение оплаты
+@enduml
