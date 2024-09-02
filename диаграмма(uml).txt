@@ -1,0 +1,25 @@
+@startuml
+actor "Платежная система" as ps
+left to right direction
+actor "Клиент" as fc
+
+rectangle "Мойка.ру"  {
+	usecase "Управлять своим профилем" as UC1
+	usecase "Управлять списком своих авто" as UC2
+	usecase "Выбрать город " as UC3
+	usecase "Выбрать мойку" as UC4
+	usecase "Выбрать дату и время" as UC5
+	usecase "Выбрать услугу" as UC6
+	usecase "Отменить услугу" as UC8
+	usecase "Выбрать способ оплаты" as UC7
+}
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+fc --> UC5
+fc --> UC6
+fc --> UC7
+fc --> UC8
+UC7 <- ps
+@enduml
