@@ -1,3 +1,7 @@
+<h1 style="text-align:center">Код Use-Case диаграммы рисунка 1</h1>
+
+```uml
+
 @startuml
 
 actor "Клиент" as fc
@@ -12,10 +16,7 @@ rectangle "Мойка.ру"  {
 	usecase "Отменить услугу" as UC5
 	usecase "Оплатить" as UC6
 }
-rectangle "Платежная система" {
-  usecase "Наличный расчет" as PS1
-  usecase "Безналичный расчет" as PS2
-}
+
 
 
 fc --> UC1
@@ -24,7 +25,7 @@ fc --> UC3
 fc --> UC4
 fc --> UC5
 fc --> UC6
-UC6 <-- PS1
-UC6 <-- PS2
 
 @enduml
+
+```
