@@ -1,0 +1,925 @@
+openapi: 3.0.0
+info:
+  title: "Сервис записи на автомойку"
+  version: "0.1"
+servers:
+  - url: http://localhost:8080/api/v1
+    description: "dev server"
+    
+paths:
+  /users:
+    get:
+      summary: "Метод получения списка клиентов"
+      tags:
+        - users
+      operationId: getAllUsers
+      responses: 
+        "200":
+          description: "Успешный ответ со списком клиентов"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Метод создания клиента"
+      tags:
+        - users
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses: 
+        "201":
+          description: "Успешный ответ с созданным клиентом"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"            
+  /users/{user_id}:
+    get:
+      summary: "Метод получения клиента по идентификатору"
+      tags:
+        - users
+      operationId: getUserById
+      parameters:
+        - name: user_id
+          in: path
+          required: True
+          description: "Идентификатор клиента"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с одним клиентом"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Метод удаления клиента по идентификатору
+      tags:
+        - users
+      operationId: deleteUser
+      parameters:
+          - name: user_id
+            in: path
+            required: True
+            description: "Идентификатор клиента"
+            schema:
+              type: integer
+            example: 1
+      responses:
+        "200":
+            description: "Успешный удаление"
+            content:
+              application/json: {}
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: "Метод изменения данных клиента по идентификатору"
+      tags:
+        - users
+      operationId: updateUserById
+      parameters:
+        - name: user_id
+          in: path
+          required: True
+          description: "Идентификатор клиента"
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses: 
+        "200":
+          description: "Успешное изменение данных клиента"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /carwashes:
+    get:
+      summary: "Метод получения списка автомоек"
+      tags:
+        - carwashes
+      operationId: getAllCarwashes
+      responses: 
+        "200":
+          description: "Успешный ответ со списком автомоек"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarWashes"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Метод создания автомойки"
+      tags:
+        - carwashes
+      operationId: createCarWash
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarWash"
+      responses: 
+        "201":
+          description: "Успешный ответ с созданной автомойкой"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarWash"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"            
+  /carwashes/{carwash_id}:
+    get:
+      summary: "Метод получения автомойки по идентификатору"
+      tags:
+        - carwashes
+      operationId: getCarwashById
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с одной автомойкой"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarWash"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Метод удаления автомойки по идентификатору
+      tags:
+        - carwashes
+      operationId: deleteСarWash
+      parameters:
+          - name: carwash_id
+            in: path
+            required: True
+            description: "Идентификатор автомойки"
+            schema:
+              type: integer
+            example: 1
+      responses:
+        "200":
+            description: "Успешное удаление автомойки"
+            content:
+              application/json: {}
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: "Метод изменения данных автомойки по идентификатору"
+      tags:
+        - carwashes
+      operationId: updateCarWashById
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarWash"
+      responses: 
+        "200":
+          description: "Успешное изменение данных клиента"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /carboxes:
+    get:
+      summary: "Метод получения списка боксов со всех автомоек"
+      tags:
+        - carboxes
+      operationId: getAllCarboxes
+      responses: 
+        "200":
+          description: "Успешный ответ со списком боксов всех автомоек"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarBoxes"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /carwashes/{carwash_id}/{carbox_id}:
+    get:
+      summary: "Метод получения одного бокса на конкретной автомойке"
+      tags:
+        - carboxes
+      operationId: getCarboxFromCarwash
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+        - name: carbox_id
+          in: path
+          required: True
+          description: "Идентификатор бокса"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с одним боксом на одной автомойке"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarBoxes"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: "Метод изменения данных бокса по идентификатору"
+      tags:
+        - carboxes
+      operationId: updateCarBoxById
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+        - name: carbox_id
+          in: path
+          required: True
+          description: "Идентификатор бокса"
+          schema:
+            type: integer
+          example: 1  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarBox"
+      responses: 
+        "200":
+          description: "Успешное изменение данных бокса"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarBox"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+    delete:
+      summary: "Метод удаления бокса по идентификатору"
+      tags:
+        - carboxes
+      operationId: deleteCarBoxById
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+        - name: carbox_id
+          in: path
+          required: True
+          description: "Идентификатор бокса"
+          schema:
+            type: integer
+          example: 1  
+      responses: 
+        "200":
+          description: "Успешное удаление бокса"
+          content:
+            application/json: {}
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+                
+  /carwash/{carwash_id}/carboxes:
+    get:
+      summary: "Метод получения списка боксов с конкретной автомойки"
+      tags:
+        - carboxes
+      operationId: getAllCarboxesFromCarwash
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ со списком боксов конкретной автомойки"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarBoxes"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
+    post:
+      summary: "Метод создания бокса на автомойке"
+      tags:
+        - carboxes
+      operationId: createCarBox
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarBox"
+      responses: 
+        "201":
+          description: "Успешный ответ с созданным боксом"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarBox"
+                
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error" 
+  /services:
+    get:
+      summary: "Метод получения списка услуг"
+      tags:
+        - services
+      operationId: getAllServices
+      responses: 
+        "200":
+          description: "Успешный ответ со списком услуг"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Services"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Метод создания услуги"
+      tags:
+        - services
+      operationId: createService
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Service"
+      responses: 
+        "201":
+          description: "Успешный ответ с созданной услугой"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"        
+  /services/{service_id}:
+    get:
+      summary: "Метод получения услуги по идентификатору"
+      tags:
+        - services
+      operationId: getServiceById
+      parameters:
+        - name: service_id
+          in: path
+          required: True
+          description: "Идентификатор услуги"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с одной услугой"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Метод удаления услуги по идентификатору
+      tags:
+        - services
+      operationId: deleteService
+      parameters:
+          - name: service_id
+            in: path
+            required: True
+            description: "Идентификатор услуги"
+            schema:
+              type: integer
+            example: 1
+      responses:
+        "200":
+            description: "Успешное удаление"
+            content:
+              application/json: {}
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: "Метод изменения данных услуги по идентификатору"
+      tags:
+        - services
+      operationId: replaceServiceById
+      parameters:
+        - name: service_id
+          in: path
+          required: True
+          description: "Идентификатор услуги"
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Service"
+      responses: 
+        "200":
+          description: "Успешное изменение данных услуги"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Service"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /service/{carwash_id}/{carbox_id}/{service_id}:
+    get:
+      summary: "Связать бокс с конкретной услугой"
+      tags:
+        - carboxes
+      operationId: addServiceToCarbox
+      parameters:
+        - name: carwash_id
+          in: path
+          required: True
+          description: "Идентификатор автомойки"
+          schema:
+            type: integer
+          example: 1
+        - name: carbox_id
+          in: path
+          required: True
+          description: "Идентификатор бокса"
+          schema:
+            type: integer
+          example: 1
+        - name: service_id
+          in: path
+          required: True
+          description: "Идентификатор услуги"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с услугой на конкретном боксе"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceAtCarbox"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /registrations:
+    get:
+      summary: "Метод получения всех записей"
+      tags:
+        - registrations
+      operationId: getAllRegistrations
+      responses: 
+        "200":
+          description: "Успешный ответ со списком записей"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registrations"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Метод создания записи"
+      tags:
+        - registrations
+      operationId: createRegistration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Registration"
+      responses: 
+        "201":
+          description: "Успешный ответ с созданной записью"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"            
+  /registrations/{registration_id}:
+    get:
+      summary: "Метод получения клиента по идентификатору"
+      tags:
+        - registrations
+      operationId: getRegistrationById
+      parameters:
+        - name: registration_id
+          in: path
+          required: True
+          description: "Идентификатор записи"
+          schema:
+            type: integer
+          example: 1
+      responses: 
+        "200":
+          description: "Успешный ответ с одной записью"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Метод удаления записи по идентификатору
+      tags:
+        - registrations
+      operationId: deleteRegistration
+      parameters:
+          - name: registration_id
+            in: path
+            required: True
+            description: "Идентификатор записи"
+            schema:
+              type: integer
+            example: 1
+      responses:
+        "200":
+            description: "Успешный удаление"
+            content:
+              application/json: {}
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      summary: "Метод изменения данных записи по идентификатору"
+      tags:
+        - registrations
+      operationId: updateRegistrationById
+      parameters:
+        - name: registration_id
+          in: path
+          required: True
+          description: "Идентификатор записи"
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Registration"
+      responses: 
+        "200":
+          description: "Успешное изменение данных клиента"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Registration"
+        "default":
+          description: Ошибки
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"            
+            
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - phone
+      properties:
+        user_id:
+          type: integer
+          example: 1
+        phone:
+          type: string
+          example: "+78005553535"
+    Users:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: "500"
+        message:
+          type: string
+          example: "Ошибка сервера"
+    CarWash:
+      type: object
+      required:
+        - name
+        - address
+        - phoneNumber
+      properties:
+        carWash_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Автомойка Люкс"
+        address:
+          type: string
+          example: "г. Ноглики, ул. Пупкина 5"
+        phoneNumber:
+          type: string
+          example: "00-00-00"
+    CarWashes:
+      type: array
+      items:
+        $ref: "#/components/schemas/CarWash"
+        
+    CarBox:
+      type: object
+      required:
+        - box_number
+        - carwash_id
+      properties:
+        carbox_id:
+          type: integer
+          example: 1
+        carwash_id:
+          type: integer
+          example: 1
+        box_number:
+          type: integer
+          example: 2
+        availability:
+          type: boolean
+          example: true
+    CarBoxes:
+      type: array
+      items:
+        $ref: "#/components/schemas/CarBox"    
+        
+    Service:
+      type: object
+      required:
+        - name
+        - cost
+      properties:
+        service_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Чистка премиум"
+        cost:
+          type: integer
+          example: 600
+        duration:
+          type: integer
+          example: 15
+        description:
+          type: string
+          example: "Мойка кузова с пеной, мойка днища, арок, ковриков, покрытие воском"
+    Services:
+      type: array
+      items:
+        $ref: "#/components/schemas/Service"
+        
+    ServiceAtCarbox:
+      type: object
+      required:
+        - carwash_id
+        - carbox_id
+        - service_id
+      properties:
+        id:
+          type: integer
+          example: 1
+        carwash_id:
+          type: integer
+          example: 1
+        carbox_id:
+          type: integer
+          example: 1
+        service_id:
+          type: integer
+          example: 1
+          
+    Registration:
+      type: object
+      required:
+        - user_id
+        - carwash_id
+        - carbox_id
+        - service_id
+        - gosauto_number
+        - register_date
+        - status
+        
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        carwash_id:
+          type: integer
+          example: 1
+        carbox_id:
+          type: integer
+          example: 1
+        service_id:
+          type: integer
+          example: 1
+        gosauto_number:
+          type: string
+          example: "а001аа01"
+        register_date:
+          type: date
+          example: '01.01.2024'
+        status:
+          type: string
+          example: 'completed'
+        
+    Registrations:
+      type: array
+      items:
+        $ref: "#/components/schemas/Registration"    
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        
