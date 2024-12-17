@@ -12,7 +12,7 @@
 </ul>
 
 <h3>Функциональные требования к сервису, что он может (рис. 1)</h3>
-<img src="./diagrams/service_functions.PNG" width="300" height="500" title="требования к сервису">
+<img src="diagrams/service_functions.PNG" width="300" height="500" title="требования к сервису">
 <p>Код этой Use-Case диаграммы для редактора PlantUML находится в файле functional_requirements.md</p>
 
 <p>
@@ -167,11 +167,11 @@ RPS(запросов в сек): 75000/24/3600 = 1
 	</ol>
 
 <h3>Работа сервиса по записи на мойку и возможной оплате (с прогнозом погоды пока не уверен)</h3>
-<img src="./diagrams/register_service.PNG" width="800" height="600" title="Работа сервиса записи на мойку и возможная оплата">
+<img src="./diagrams/register_service.png" width="800" height="600" title="Работа сервиса записи на мойку и возможная оплата">
 <p>Код для диаграммы расположен в файле работа_сервиса.md</p>
 
 <h3>Отмена записи на мойку</h3>
-<img src="./diagrams/cancel_registration.PNG" width="800" height="400" title="Отмена записи">
+<img src="./diagrams/cancel_registration.png" width="800" height="400" title="Отмена записи">
 <p>Код для диаграммы расположен в файле работа_сервиса.md</p>
 
 
@@ -187,7 +187,7 @@ RPS(запросов в сек): 75000/24/3600 = 1
 
 <h3>ER-диграмма (структура базы данных)</h3>
 <p>Структура БД описана в файле diagrams/автомойка_бд.vsdx</p>
-<img src="./diagrams/автомойка_бд.PNG" title="Отмена записи">
+<img src="./diagrams/автомойка_бд.png" title="Отмена записи">
 
 
 <h3>C4 модель</h3>
