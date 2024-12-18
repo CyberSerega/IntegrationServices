@@ -12,7 +12,7 @@
 </ul>
 
 <h3>Функциональные требования к сервису, что он может (рис. 1)</h3>
-<img src="diagrams/service_functions.PNG" width="300" height="500" title="требования к сервису">
+<img src="diagrams/service_functions.PNG" width="700" height="500" title="требования к сервису">
 <p>Код этой Use-Case диаграммы для редактора PlantUML находится в файле functional_requirements.md</p>
 
 <p>
