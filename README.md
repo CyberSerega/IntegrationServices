@@ -276,3 +276,9 @@
 <br><br>
 <p>Уровень С2</p>
 <img src="./diagrams/C2.PNG" title="С2">
+
+### Спецификация OpenAPI
+<p>Код расположен в файле <a href="openapi.yaml">openapi.yaml</a></p>
+<img src="./diagrams/openapi1.PNG" title="OpenAPI">
+<img src="./diagrams/openapi2.PNG" title="OpenAPI">
+<img src="./diagrams/openapi3.PNG" title="OpenAPI">

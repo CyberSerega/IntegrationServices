@@ -897,7 +897,7 @@ components:
           type: string
           example: "а001аа01"
         register_date:
-          type: date
+          type: string
           example: '01.01.2024'
         status:
           type: string
